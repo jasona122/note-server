@@ -1,0 +1,34 @@
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - service-to-sql
+    env_file: .env
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+  mysqldb:
+    image: mysql
+    env_file: .env
+    ports:
+      - "3306:3306"
+    networks:
+      - service-to-sql
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      retries: 10
+      interval: 3s
+      timeout: 30s
+
+volumes:
+  db-data:
+
+networks:
+  service-to-sql:
+    name: service-to-sql
