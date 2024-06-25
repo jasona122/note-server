@@ -2,6 +2,8 @@ package com.example.noteserver.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Note {
     @Size(min=1, message=EMPTY_TEXT_ERROR_MESSAGE)
     @NotNull(message=NULL_TEXT_ERROR_MESSAGE)
     private String text;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
 
     public Note() {
