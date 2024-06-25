@@ -31,4 +31,8 @@ public class NoteService {
 		return note;
 	}
 
+	public void deleteAllNotes() {
+		noteRepository.deleteAll();
+	}
+
 }

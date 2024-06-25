@@ -5,6 +5,10 @@ import java.util.List;
 import com.example.noteserver.model.Note;
 
 public class SuccessNoteResponse extends NoteResponse {
+
+	public SuccessNoteResponse() {
+		super(true);
+	}
 	
 	public SuccessNoteResponse(Note note) {
 		super(true);
