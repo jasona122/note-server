@@ -21,6 +21,10 @@ public class NoteService {
 		return noteRepository.findAll(sorter);
 	}
 	
+	public List<Note> search(String text) {
+		return noteRepository.findNoteByText(text);
+	}
+	
 	public Note saveNote(Note note) {
 		note.setTimestamp(LocalDateTime.now());
 		return noteRepository.save(note);

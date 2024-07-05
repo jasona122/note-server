@@ -91,6 +91,14 @@ public class NoteController {
     	NoteResponse response = new SuccessNoteResponse(createdNote);
     	return ResponseEntity.created(location).body(response);
     }
+	
+	@GetMapping("/search")
+	public ResponseEntity<NoteResponse> searchNote(@RequestParam String text) {
+		List<Note> searchedNotes = noteService.search(text);
+		NoteResponse response = new SuccessNoteResponse(searchedNotes);
+		
+		return ResponseEntity.ok(response);
+	}
 
 	@Tag(name="DELETE", description="DELETE methods of Notes API")
 	@DeleteMapping("/deleteAll")
